@@ -11,6 +11,6 @@
   "automatic": {
   },
   "run_list": [
-    "recipe[riffstation::kibana]"
+    "recipe[elkstack::kibana]"
   ]
 }

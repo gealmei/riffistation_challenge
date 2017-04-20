@@ -1,0 +1,8 @@
+{
+  "run_list": [
+
+  ],
+  "automatic": {
+    "ipaddress": "kibana_pub.challenge.aws.com"
+  }
+}

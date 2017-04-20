@@ -1,0 +1,8 @@
+{
+  "run_list": [
+
+  ],
+  "automatic": {
+    "ipaddress": "es3_pub.challenge.aws.com"
+  }
+}

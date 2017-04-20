@@ -19,12 +19,9 @@ end
 package "rsyslog" do
   action :install
 end
-
-cookbook_file '/etc/rsyslog.d/nginx.conf' do
-    source 'etc/rsyslog.d/nginx.conf'
-    owner 'root'
-    group 'root'
-    mode '0644'
+service "rsyslog" do
+   supports status: true, restart: true, reload: true
+   action [ :enable, :start ]
 end
 
 service "kibana" do
@@ -54,4 +51,12 @@ template '/etc/nginx/conf.d/nginx.conf' do
     mode 0644
     source 'etc/nginx/conf.d/nginx.conf.erb'
     notifies :restart, 'service[nginx]', :delayed
+end
+
+cookbook_file '/etc/rsyslog.d/nginx.conf' do
+    source 'etc/rsyslog.d/nginx.conf'
+    owner 'root'
+    group 'root'
+    mode '0644'
+    notifies :restart, 'service[rsyslog]', :delayed
 end

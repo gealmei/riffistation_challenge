@@ -11,6 +11,6 @@
   "automatic": {
   },
   "run_list": [
-    "recipe[riffstation::elasticsearch]"
+    "recipe[elkstack::elasticsearch]"
   ]
 }
