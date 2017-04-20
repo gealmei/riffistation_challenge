@@ -1,0 +1,16 @@
+{
+  "name": "es1",
+  "chef_type": "node",
+  "chef_environment": "dev",
+  "default": {
+  },
+  "normal": {
+  },
+  "override": {
+  },
+  "automatic": {
+  },
+  "run_list": [
+    "recipe[riffstation::elasticsearch]"
+  ]
+}

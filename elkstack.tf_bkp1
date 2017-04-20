@@ -1,0 +1,204 @@
+provider "aws" {
+  access_key = "AKIAJ4WPXUPCGXXYIXYQ"
+  secret_key = "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"
+  region     = "sa-east-1"
+}
+
+resource "aws_security_group" "elk_controll_access" {
+  name        = "elk_controll_access"
+  description = "elk_controll_access"
+
+  ingress {
+    from_port   = 0
+    to_port     = 65535
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port       = 0
+    to_port         = 65535
+    protocol        = "tcp"
+    cidr_blocks     = ["0.0.0.0/0"]
+  }
+}
+
+resource "aws_instance" "kibana" {
+  ami             = "ami-6388010f"
+  instance_type   = "t2.micro"
+  key_name        = "opsworks"
+  security_groups = ["elk_controll_access"]
+
+provisioner "chef" {
+    attributes_json = <<-EOF
+      {
+        "key": "value",
+        "app": {
+          "elkstack": {
+            "nodes": [
+              "kibana"
+            ]
+          }
+        }
+      }
+    EOF
+
+    environment     = "_default"
+    run_list        = ["riffstation::kibana"]
+    node_name       = "kibana"
+    server_url      = "https://chef.company.com/organizations/org1"
+    recreate_client = true
+    user_name       = "test"
+    user_key        = "test123!@#"
+    version         = "12.4.1"
+    connection {
+    type        = "ssh"
+    user        = "ubuntu"
+    private_key = "${file("~/Downloads/opsworks.pem")}"
+    }
+  }
+}
+
+resource "aws_instance" "logstash" {
+  ami             = "ami-6388010f"
+  instance_type   = "t2.large"
+  key_name        = "opsworks"
+  security_groups = ["elk_controll_access"]
+
+provisioner "chef" {
+    attributes_json = <<-EOF
+      {
+        "key": "value",
+        "app": {
+          "elkstack": {
+            "nodes": [
+              "logstash"
+            ]
+          }
+        }
+      }
+    EOF
+
+    environment     = "_default"
+    run_list        = ["riffstation::logstash"]
+    node_name       = "logstash"
+    server_url      = "https://chef.company.com/organizations/org1"
+    recreate_client = true
+    user_name       = "test"
+    user_key        = "test123!@#"
+    version         = "12.4.1"
+    connection {
+    type        = "ssh"
+    user        = "ubuntu"
+    private_key = "${file("~/Downloads/opsworks.pem")}"
+    }
+  }
+}
+
+resource "aws_instance" "es1" {
+  ami             = "ami-6388010f"
+  instance_type   = "t2.small"
+  key_name        = "opsworks"
+  security_groups = ["elk_controll_access"]
+
+provisioner "chef" {
+    attributes_json = <<-EOF
+      {
+        "key": "value",
+        "app": {
+          "elkstack": {
+            "nodes": [
+              "es1"
+            ]
+          }
+        }
+      }
+    EOF
+
+    environment     = "_default"
+    run_list        = ["riffstation::es1"]
+    node_name       = "es1"
+    server_url      = "https://chef.company.com/organizations/org1"
+    recreate_client = true
+    user_name       = "test"
+    user_key        = "test123!@#"
+    version         = "12.4.1"
+    connection {
+    type        = "ssh"
+    user        = "ubuntu"
+    private_key = "${file("~/Downloads/opsworks.pem")}"
+    }
+  }
+}
+
+resource "aws_instance" "es2" {
+  ami             = "ami-6388010f"
+  instance_type   = "t2.large"
+  key_name        = "opsworks"
+  security_groups = ["elk_controll_access"]
+
+provisioner "chef" {
+    attributes_json = <<-EOF
+      {
+        "key": "value",
+        "app": {
+          "elkstack": {
+            "nodes": [
+              "es2"
+            ]
+          }
+        }
+      }
+    EOF
+
+    environment     = "_default"
+    run_list        = ["riffstation::es2"]
+    node_name       = "es2"
+    server_url      = "https://chef.company.com/organizations/org1"
+    recreate_client = true
+    user_name       = "test"
+    user_key        = "test123!@#"
+    version         = "12.4.1"
+    connection {
+    type        = "ssh"
+    user        = "ubuntu"
+    private_key = "${file("~/Downloads/opsworks.pem")}"
+    }
+  }
+}
+
+resource "aws_instance" "es3" {
+  ami             = "ami-6388010f"
+  instance_type   = "t2.large"
+  key_name        = "opsworks"
+  security_groups = ["elk_controll_access"]
+
+provisioner "chef" {
+    attributes_json = <<-EOF
+      {
+        "key": "value",
+        "app": {
+          "elkstack": {
+            "nodes": [
+              "es3"
+            ]
+          }
+        }
+      }
+    EOF
+
+    environment     = "_default"
+    run_list        = ["riffstation::es3"]
+    node_name       = "es3"
+    server_url      = "https://chef.company.com/organizations/org1"
+    recreate_client = true
+    user_name       = "test"
+    user_key        = "test123!@#"
+    version         = "12.4.1"
+    connection {
+    type        = "ssh"
+    user        = "ubuntu"
+    private_key = "${file("~/Downloads/opsworks.pem")}"
+    }
+  }
+}

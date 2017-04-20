@@ -1,0 +1,38 @@
+{
+  "template": "logstash",
+  "settings": {
+    "number_of_shards": 2
+    "number_of_replicas": 1
+  },
+  "mappings": {
+    "logs": {
+      "properties": {
+        "@timestamp": {
+          "type": "date",
+          "format": "strict_date_optional_time||epoch_millis"
+        },
+        "@version": {
+          "type": "string"
+        },
+        "hits": {
+          "type": "long"
+        },
+        "log": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "status": {
+          "type": "long"
+        },
+        "thread": {
+          "type": "string"
+        },
+        "timestamp": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
