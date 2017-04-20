@@ -8,7 +8,7 @@ follow thes steps to deploy works
 1. Ajust the file riffistation_challenge/default.tfvars input all data necessary to work in your enviromment
 
 2. choose wich terraform plan to run between riffistation_challenge/elkstack_chef to use chef server or riffistation_challenge/elkstack to use chef solo
-	2.1 in case of use riffistation_challenge/elkstack_chef rename it to riffistation_challenge/elkstack_chef.tf, move riffistation_challenge/elkstack.tf to riffistation_challenge/elkstack_chef.tf_option and execute #terraform apply -var-file=default.tfvars
+	2.1 in case of use riffistation_challenge/elkstack_chef rename it to riffistation_challenge/elkstack_chef.tf, move riffistation_challenge/elkstack.tf to riffistation_challenge/elkstack_chef.tf_option and execute upload the cookbook to your chef-server and execute #terraform apply -var-file=default.tfvars
 	2.2 in case of use riffistation_challenge/elkstack execute #terraform apply -var-file=default.tfvars
 3. If your choice was "2.1" all plan will deply infrastrcture and applications, if your choice was 2.2 follow the next steps
 	3.3 after your instances are running at aws execute ./riffistation_challenge/prepare.sh
